@@ -1,0 +1,2 @@
+# Infomation
+Open APIのトレーニング リポジトリです。
