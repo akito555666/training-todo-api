@@ -13,3 +13,7 @@ Open APIのトレーニング リポジトリです。
 ## Run
  1. Boot server, type `F5` key
  1. Browsing `localhost:8080/tasks/{anything}`
+
+## DB access
+ - **REQUIRED** Running server
+ 1. Browsing `http://localhost:8080/h2-console`
