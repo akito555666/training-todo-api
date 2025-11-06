@@ -2,12 +2,12 @@ openapi: "3.0.0"
 info:
   title: TODO API Document
   version: "0.0.1"
-  description: TODO API のドキュメントです
+  description: "TODO API のドキュメントです"
 tags:
   - name: opts
-    description: 運用監視関連のAPI
+    description: "運用監視関連のAPI"
   - name: tasks
-    description: タスク関連のAPI
+    description: "タスク関連のAPI"
 paths:
   /health:
     get:
@@ -16,11 +16,19 @@ paths:
       responses:
         '200':
           description: OK
-  /tasks/1:
+  /tasks/{taskId}:
     get:
       tags:
        - tasks
       operationId: showTask
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          description: "詳細を取得するタスクのID"
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: OK
@@ -28,6 +36,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaskDTO'
+        '400':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundError'
 components:
   schemas:
     TaskDTO:
@@ -35,10 +49,24 @@ components:
       properties:
         id:
           type: integer
-          description: タスクID
+          description: "タスクID"
         title:
           type: string
-          description: タスクタイトル
+          description: "タスクタイトル"
       required:
         - id
         - title
+    ResourceNotFoundError:
+      description: "指定したリソースが存在しない"
+      type: object
+      properties:
+        title:
+          type: string
+          description: "エラーのタイトル"
+          default: "Resource Not Found"
+        details:
+          type: string
+          description: "エラーの詳細"
+      required:
+        - title
+        - details
