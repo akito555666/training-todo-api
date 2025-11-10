@@ -8,7 +8,7 @@ Open APIのトレーニング リポジトリです。
  
 ## Build
  1. Open command Palette or type `ctrl` key x2
- 1. Run `gradlew :buildSpringServer`
+ 1. Run `./gradlew :buildSpringServer`
 
 ## Run
  1. Boot server, type `F5` key
